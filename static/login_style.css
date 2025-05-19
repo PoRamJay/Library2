@@ -255,3 +255,11 @@
     transform: rotate(45deg);
   }
   
+  .keep-logged-in label {
+    font-family: var(--body-text-font-family, "Inter", Helvetica, Arial, sans-serif);
+    font-weight: var(--body-text-font-weight, 500);
+    font-size: var(--body-text-font-size, 20px);
+    color: #222;
+    margin-left: 4px;
+  }
+  

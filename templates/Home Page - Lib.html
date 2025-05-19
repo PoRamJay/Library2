@@ -3,50 +3,87 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='lib_globals.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='lib_styleguide.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='lib_style.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_globals.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_styleguide.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_style.css') }}" />
   </head>
   <body>
-    <div class="home-page-library">
+    <div class="home-page-add-items">
       <div class="sidebar">
         <div class="title">Shelf Sync</div>
-        <nav class="list">
-          <a href="/library" class="library">
-            <div class="logo-placeholder"></div>
-            <span class="text-wrapper">Library</span>
+        <div class="menu-list">
+          <a href="{{ url_for('library') }}" class="menu-item {% if request.endpoint == 'library' %}active{% endif %}">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Library
           </a>
-          <a href="/add_items" class="add-items">
-            <div class="logo-placeholder"></div>
-            <span class="text-wrapper">Add Items</span>
+          <a href="{{ url_for('add_items') }}" class="menu-item {% if request.endpoint == 'add_items' %}active{% endif %}">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Add Items
           </a>
-          <a href="/add_collection" class="add-collection">
-            <div class="logo-placeholder"></div>
-            <span class="text-wrapper">Add Collection</span>
+          <a href="{{ url_for('add_collection') }}" class="menu-item {% if request.endpoint == 'add_collection' %}active{% endif %}">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Add Collection
           </a>
-        </nav>
-        <a href="/support" class="support">
-          <div class="logo-placeholder"></div>
-          <span class="text-wrapper">Support</span>
-        </a>
-        <a href="/logout" class="logout">
-          <div class="logo-placeholder"></div>
-          <span class="text-wrapper">Logout</span>
-        </a>
+          <a href="{{ url_for('support') }}" class="menu-item {% if request.endpoint == 'support' %}active{% endif %}">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Support
+          </a>
+          <a href="{{ url_for('logout') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Logout
+          </a>
+        </div>
       </div>
-      <header class="header">
-        <div class="filter">
-          <img class="img" src="{{ url_for('static', filename='img/filter.svg') }}" />
-          <div class="label">Filter</div>
+
+      <div class="main-content">
+        <header class="header">
+          <h1 class="header-title">My Collection</h1>
+          <div class="header-subheading subheading-font">Subheading</div>
+        </header>
+        
+        {% if collections %}
+        <div class="library-grid">
+          {% for collection in collections %}
+          <a href="{{ url_for('collection_view', id=collection.id) }}" class="book-card">
+            <div class="book-image">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="book-title">{{ collection.name }}</div>
+            <div class="book-count">{{ collection.book_count }} books</div>
+            {% if collection.isdue %}
+              <span class="overdue-label">Overdue</span>
+            {% endif %}
+          </a>
+          {% endfor %}
         </div>
-        <div class="search">
-          <img class="img" src="{{ url_for('static', filename='img/search.svg') }}" />
-          <input class="input" placeholder="Start Searching..." type="text" />
+        {% else %}
+        <div class="empty-state">
+          <p>You don't have any collections yet.</p>
+          <a href="{{ url_for('add_collection') }}" class="add-collection-button">Create Collection</a>
         </div>
-        <p class="p">Borrow Books from the Library</p>
-      </header>
-      <img class="line" src="{{ url_for('static', filename='img/line-1.svg') }}" />
-      <p class="text-wrapper-2">Start by adding a Collection!</p>
+        {% endif %}
+      </div>
     </div>
   </body>
-</html>
+</html> 

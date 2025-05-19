@@ -9,13 +9,16 @@
 }
 
 .home-page-collection .sidebar {
-  position: relative;
   width: 256px;
-  height: 960px;
+  height: 100%;
   background-color: #ffffff;
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-color: #dfdfdf;
+  border-right: 1px solid #E0E0E0;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .home-page-collection .list {
@@ -111,17 +114,15 @@
 }
 
 .home-page-collection .title {
-  position: absolute;
-  height: 36px;
-  top: 23px;
-  left: 24px;
-  font-family: "Inter-SemiBold", Helvetica;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
   font-weight: 600;
   color: #000000;
-  font-size: 24px;
-  letter-spacing: -0.24px;
-  line-height: 36px;
-  white-space: nowrap;
+  margin-bottom: 32px;
+  position: static;
+  height: auto;
+  top: auto;
+  left: auto;
 }
 
 .home-page-collection .support {
@@ -264,4 +265,147 @@
   position: absolute;
   top: 42px;
   left: 320px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px;
+  margin-left: 256px;
+  background-color: #FFFFFF;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 48px;
+}
+
+.header-title {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 24px 0;
+}
+
+.book-card {
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.book-card:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.book-image {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #F5F5F5;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-image svg {
+  width: 60%;
+  height: 60%;
+  color: #BDBDBD;
+}
+
+.book-title {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 4px;
+}
+
+.book-count {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #757575;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.empty-state p {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #757575;
+  margin-bottom: 16px;
+}
+
+.add-collection-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  background: #333333;
+  border: none;
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.add-collection-button:hover {
+  background: #000000;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  text-decoration: none;
+  color: #757575;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.menu-item:hover {
+  color: #333333;
+  background-color: #F5F5F5;
+}
+
+.menu-item.active {
+  color: #333333;
+  font-weight: 500;
+  background-color: #F5F5F5;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  flex-shrink: 0;
 }

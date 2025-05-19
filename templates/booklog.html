@@ -9,7 +9,7 @@
     <title>User Book Log Admin</title>
   </head>
   <body>
-    <div class="user-book-log-admin">
+2    <div class="user-book-log-admin">
       <nav class="sidebar">
         <h1 class="title">Shelf Sync</h1>
         <ul class="list">
@@ -69,21 +69,27 @@
               </div>
             </div>
           </div>
+          {% for log in logs %}
           <div class="navbar-wrapper">
             <div class="div-2">
               <p class="p">
-                <span class="span">The Great Gatsby</span><br />
-                <span class="text-wrapper-8">F. Scott Fitzgerald</span>
+                <span class="span">{{ log.book_title }}</span><br />
+                <span class="text-wrapper-8">{{ log.book_author }}</span>
               </p>
-              <div class="text-wrapper-9">Peter John Holden</div>
-              <div class="text-wrapper-10">04/01/2025</div>
-              <div class="text-wrapper-11">04/15/2025</div>
+              <div class="text-wrapper-9">{{ log.borrower_name }}</div>
+              <div class="text-wrapper-10">{{ log.borrower_date.strftime('%m/%d/%Y') }}</div>
+              <div class="text-wrapper-11">{{ log.returner_date.strftime('%m/%d/%Y') }}</div>
               <div class="overlap-group-2">
-                <div class="text-wrapper-12">Overdue</div>
-                <div class="text-wrapper-13">123456789012444</div>
+                {% if log.status == 'Overdue' %}
+                  <div class="text-wrapper-12">Overdue</div>
+                {% else %}
+                  <div class="text-wrapper-14">Returned</div>
+                {% endif %}
+                <div class="text-wrapper-13">{{ log.transaction_id }}</div>
               </div>
             </div>
           </div>
+          {% endfor %}
         </section>
         <section class="group-wrapper">
           <div class="div-2">

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='items_globals.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='items_styleguide.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='items_style.css') }}" />
+  <title>Edit Book</title>
+</head>
+<body>
+  <div class="home-page-add-items">
+    <div class="sidebar">
+      <div class="title">Shelf Sync</div>
+      <div class="menu-list">
+        <a href="{{ url_for('bookcatalog') }}" class="menu-item">Book Catalog</a>
+        <a href="{{ url_for('add_items') }}" class="menu-item">Add book</a>
+        <a href="{{ url_for('booklog') }}" class="menu-item">Book Log</a>
+        <a href="{{ url_for('borrowerprofile') }}" class="menu-item">Borrow Profiles</a>
+        <a href="{{ url_for('support') }}" class="menu-item">Support</a>
+        <a href="{{ url_for('logout') }}" class="menu-item">Logout</a>
+      </div>
+    </div>
+    <div class="main-content">
+      <header class="header">
+        <h1 class="header-title subheading-font">Edit Book</h1>
+      </header>
+      <div class="edit-book-form-container subheading-font">
+        <form method="POST">
+          <label class="subheading-font">Title:<br><input type="text" class="form-input" name="title" value="{{ book.title }}" required></label><br>
+          <label class="subheading-font">Author:<br><input type="text" class="form-input" name="author" value="{{ book.author }}"></label><br>
+          <label class="subheading-font">ISBN:<br><input type="text" class="form-input" name="isbn" value="{{ book.isbn }}"></label><br>
+          <label class="subheading-font">Year Published:<br><input type="number" class="form-input" name="year_published" value="{{ book.year_published }}"></label><br>
+          <label class="subheading-font">Genre:<br><input type="text" class="form-input" name="genre" value="{{ book.genre }}"></label><br>
+          <label class="subheading-font">Status:<br>
+            <select name="status" class="form-select">
+              <option value="available" {% if book.status == 'available' %}selected{% endif %}>Available</option>
+              <option value="borrowed" {% if book.status == 'borrowed' %}selected{% endif %}>Borrowed</option>
+            </select>
+          </label><br>
+          <div class="edit-book-form-actions">
+            <button type="submit">Save Changes</button>
+            <a href="{{ url_for('bookcatalog') }}" class="cancel-link">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 
