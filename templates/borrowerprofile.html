@@ -3,195 +3,106 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='borrowerprofile_globals.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='borrowerprofile_styleguide.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='borrowerprofile_style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='booklog_style.css') }}" />
     <title>Borrower Profiles</title>
   </head>
   <body>
-    <div class="borrower-profiles">
+    <div class="user-book-log-admin">
       <nav class="sidebar">
-        <h1 class="title">Shelf Sync</h1>
-        <ul class="list">
-          <li class="library">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Book Catalog</a>
-          </li>
-          <li class="add-items">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Add book</a>
-          </li>
-          <li class="add-collection">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Remove book</a>
-          </li>
-          <li class="add-collection">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Edit book</a>
-          </li>
-          <li class="add-collection">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Book Log</a>
-          </li>
-          <li class="add-collection">
-            <span class="logo-placeholder" aria-hidden="true"></span>
-            <a href="#" class="text-wrapper">Borrower Profiles</a>
-          </li>
-        </ul>
-        <div class="support">
-          <span class="logo-placeholder" aria-hidden="true"></span>
-          <a href="#" class="text-wrapper">Support</a>
-        </div>
-        <div class="logout">
-          <span class="logo-placeholder" aria-hidden="true"></span>
-          <a href="#" class="text-wrapper">Logout</a>
+        <div class="title">Shelf Sync</div>
+        <div class="menu-list">
+          <a href="{{ url_for('bookcatalog') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 6.5V19a2 2 0 0 0 2 2h14" />
+              <path d="M21 6.5V19a2 2 0 0 1-2 2H5" />
+              <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H19a2 2 0 0 1 2 2.5" />
+              <path d="M3 6.5c2.5-1.5 5.5-1.5 8 0s5.5 1.5 8 0" />
+            </svg>
+            Book Catalog
+          </a>
+          <a href="{{ url_for('add_book') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="4" width="12" height="16" rx="2"/>
+              <path d="M20 7v6"/>
+              <path d="M23 10h-6"/>
+            </svg>
+            Add Book
+          </a>
+          <a href="{{ url_for('booklog') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="4" width="12" height="16" rx="2"/>
+              <path d="M9 2v4"/>
+              <path d="M15 2v4"/>
+              <path d="M9 10h6"/>
+              <path d="M9 14h6"/>
+            </svg>
+            Book Log
+          </a>
+          <a href="{{ url_for('borrowerprofile') }}" class="menu-item active">
+            <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="8" r="3"/>
+              <circle cx="16" cy="8" r="3"/>
+              <path d="M2 20v-1a4 4 0 0 1 4-4h2"/>
+              <path d="M22 20v-1a4 4 0 0 0-4-4h-2"/>
+            </svg>
+            Borrower Profiles
+          </a>
+          <a href="{{ url_for('support') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Support
+          </a>
+          <a href="{{ url_for('logout') }}" class="menu-item">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Logout
+          </a>
         </div>
       </nav>
       <main class="card-grid-image">
-        <header class="text-content-heading">
+        <header>
           <h2 class="heading">Borrower Profiles</h2>
+          <p class="subheading">Admin View</p>
         </header>
-        <form class="search" role="search">
-          <label for="search-input" class="visually-hidden">Search</label>
-          <input id="search-input" class="label" placeholder="Start Searching..." type="search" />
-          <img class="img" src="img/search.svg" alt="Search icon" />
+        <form class="search" role="search" method="get" action="{{ url_for('borrowerprofile') }}">
+          <input class="label" name="search" placeholder="Start Searching..." type="search" aria-label="Search users" value="{{ search|default('') }}" />
+          <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
         </form>
-        <section class="frame">
-          <div class="group">
-            <header class="group-2">
-              <h3 class="text-wrapper-2">Borrower Name</h3>
-              <h3 class="text-wrapper-3">User ID</h3>
-              <h3 class="text-wrapper-4">Email</h3>
-              <h3 class="text-wrapper-5">Role ID</h3>
-              <h3 class="text-wrapper-6">Remove Profile</h3>
-            </header>
-            <ul class="group-3">
-              <li class="overlap-group">
-                <div class="frame-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Peter John Holden</span>
-                      <span class="text-wrapper-8">55123</span>
-                      <span class="text-wrapper-9">pjh2012@yahoo.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Peter John Holden"></button>
-              </li>
-              <li class="overlap">
-                <div class="div-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Henrietta Arturia</span>
-                      <span class="text-wrapper-8">55124</span>
-                      <span class="text-wrapper-9">henriettaarturia@gmail.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Henrietta Arturia"></button>
-              </li>
-              <li class="overlap-2">
-                <div class="group-6">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Sebastian Freniere</span>
-                      <span class="text-wrapper-11">55125</span>
-                      <span class="text-wrapper-9">ianfreniere@gmail.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Sebastian Freniere"></button>
-              </li>
-            </ul>
-            <ul class="group-7">
-              <li class="overlap-group">
-                <div class="frame-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Giovanni Freniere</span>
-                      <span class="text-wrapper-8">55555</span>
-                      <span class="text-wrapper-9">vanfreniere@gmail.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Giovanni Freniere"></button>
-              </li>
-              <li class="overlap">
-                <div class="div-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Dean Manchester</span>
-                      <span class="text-wrapper-8">88888</span>
-                      <span class="text-wrapper-9">deanman@outlook.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Dean Manchester"></button>
-              </li>
-              <li class="overlap-2">
-                <div class="group-6">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Wycliffe Arturia</span>
-                      <span class="text-wrapper-8">12345</span>
-                      <span class="text-wrapper-9">wycliffearturia@live.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Wycliffe Arturia"></button>
-              </li>
-            </ul>
-            <ul class="group-8">
-              <li class="overlap-group">
-                <div class="frame-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Jenny Nameless</span>
-                      <span class="text-wrapper-8">30922</span>
-                      <span class="text-wrapper-9">jnameless022@outlook.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Jenny Nameless"></button>
-              </li>
-              <li class="overlap">
-                <div class="div-wrapper">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Jae Ehan</span>
-                      <span class="text-wrapper-8">54321</span>
-                      <span class="text-wrapper-9">jaelovesfeet@gmail.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Jae Ehan"></button>
-              </li>
-              <li class="overlap-2">
-                <div class="group-6">
-                  <div class="group-wrapper">
-                    <div class="group-4">
-                      <span class="text-wrapper-7">Maximo Gun</span>
-                      <span class="text-wrapper-8">84756</span>
-                      <span class="text-wrapper-9">maximogun70@yahoo.com</span>
-                      <span class="text-wrapper-10">123</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="group-5" aria-label="Remove Maximo Gun"></button>
-              </li>
-            </ul>
+        <section class="group">
+          <div class="frame" style="grid-template-columns: 2fr 1fr 1fr;">
+            <div>Borrower Name</div>
+            <div>User ID</div>
+            <div>Remove Profile</div>
           </div>
+          {% for user in users %}
+          <div class="navbar-wrapper" style="grid-template-columns: 2fr 1fr 1fr;">
+            <div>{{ user.username }}</div>
+            <div>{{ user.id }}</div>
+            <div>
+              <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}" style="display:inline;">
+                <button type="submit" style="background:none;border:none;cursor:pointer;">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                    <line x1="6" y1="18" x2="18" y2="6" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
         </section>
       </main>
-      <div class="subheading">Admin View</div>
     </div>
   </body>
 </html>

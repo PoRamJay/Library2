@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='add_book.css') }}" />
+  <title>Add Book</title>
+</head>
+<body>
+  <div class="home-page-add-items">
+    <div class="sidebar">
+      <div class="title">Shelf Sync</div>
+      <div class="menu-list">
+        <a href="{{ url_for('bookcatalog') }}" class="menu-item">
+          <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 6.5V19a2 2 0 0 0 2 2h14" />
+            <path d="M21 6.5V19a2 2 0 0 1-2 2H5" />
+            <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H19a2 2 0 0 1 2 2.5" />
+            <path d="M3 6.5c2.5-1.5 5.5-1.5 8 0s5.5 1.5 8 0" />
+          </svg>
+          Book Catalog
+        </a>
+        <a href="{{ url_for('add_book') }}" class="menu-item active">
+          <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="4" width="12" height="16" rx="2"/>
+            <path d="M20 7v6"/>
+            <path d="M23 10h-6"/>
+          </svg>
+          Add book
+        </a>
+        <a href="{{ url_for('booklog') }}" class="menu-item">
+          <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="4" width="12" height="16" rx="2"/>
+            <path d="M9 2v4"/>
+            <path d="M15 2v4"/>
+            <path d="M9 10h6"/>
+            <path d="M9 14h6"/>
+          </svg>
+          Book Log
+        </a>
+        <a href="{{ url_for('borrowerprofile') }}" class="menu-item">
+          <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="8" cy="8" r="3"/>
+            <circle cx="16" cy="8" r="3"/>
+            <path d="M2 20v-1a4 4 0 0 1 4-4h2"/>
+            <path d="M22 20v-1a4 4 0 0 0-4-4h-2"/>
+          </svg>
+          Borrow Profiles
+        </a>
+        <a href="{{ url_for('support') }}" class="menu-item">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Support
+        </a>
+        <a href="{{ url_for('logout') }}" class="menu-item">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </div>
+    <div class="main-content">
+      <header class="header">
+        <h1 class="header-title">Add Book</h1>
+      </header>
+      {% if message %}
+        <div class="add-book-success">{{ message }}</div>
+      {% endif %}
+      <div class="add-book-form-container">
+        <form method="POST">
+          <label class="add-book-label">Title:<br><input type="text" class="add-book-input" name="title" required></label><br>
+          <label class="add-book-label">Author:<br><input type="text" class="add-book-input" name="author"></label><br>
+          <label class="add-book-label">ISBN:<br><input type="text" class="add-book-input" name="isbn"></label><br>
+          <label class="add-book-label">Year Published:<br><input type="number" class="add-book-input" name="year_published"></label><br>
+          <label class="add-book-label">Genre:<br><input type="text" class="add-book-input" name="genre"></label><br>
+          <label class="add-book-label">Status:<br>
+            <select name="status" class="add-book-select">
+              <option value="available">Available</option>
+              <option value="borrowed">Borrowed</option>
+            </select>
+          </label><br>
+          <div class="add-book-form-actions">
+            <button type="submit">Add Book</button>
+            <a href="{{ url_for('bookcatalog') }}" class="cancel-link">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

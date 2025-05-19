@@ -1,0 +1,152 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f8fa;
+}
+.add-book-form-container {
+  max-width: 480px;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 32px 32px 24px 32px;
+}
+.add-book-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #222;
+}
+.add-book-input,
+.add-book-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-bottom: 18px;
+  background: #fafbfc;
+  transition: border 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.add-book-input:focus,
+.add-book-select:focus {
+  border: 1.5px solid #4a90e2;
+  outline: none;
+}
+.add-book-form-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 12px;
+}
+.add-book-form-actions button[type="submit"] {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.add-book-form-actions button[type="submit"]:hover {
+  background: #444;
+}
+.add-book-form-actions .cancel-link {
+  color: #e53935;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.add-book-form-actions .cancel-link:hover {
+  color: #b71c1c;
+}
+.add-book-success {
+  background: #e6f9e6;
+  color: #207520;
+  border: 1px solid #b6e2b6;
+  border-radius: 6px;
+  padding: 12px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Admin Sidebar/Layout Styles for Add Book Page --- */
+.home-page-add-items {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+.home-page-add-items .sidebar {
+  width: 256px;
+  height: 100%;
+  background-color: #ffffff;
+  border-right: 1px solid #E0E0E0;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.home-page-add-items .title {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 32px;
+}
+.home-page-add-items .menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.home-page-add-items .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  text-decoration: none;
+  color: #757575;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+.home-page-add-items .menu-item:hover {
+  color: #333333;
+  background-color: #F5F5F5;
+}
+.home-page-add-items .menu-item.active {
+  color: #333333;
+  font-weight: 500;
+  background-color: #F5F5F5;
+}
+.home-page-add-items .logo-placeholder {
+  width: 24px;
+  height: 24px;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+}
+.home-page-add-items .menu-icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  flex-shrink: 0;
+}
+.home-page-add-items .main-content {
+  flex: 1;
+  padding: 32px;
+  margin-left: 256px;
+  background-color: #FFFFFF;
+  min-height: 100vh;
+}
+/* --- End Admin Sidebar/Layout Styles --- */ 

@@ -413,6 +413,14 @@
   font-family: "Inter", sans-serif;
 }
 
+.subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #757575;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
 .subheading-font {
   font-family: "Inter", sans-serif;
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='items_globals.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='items_styleguide.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='items_style.css') }}" />
-    <title>Book Catalog Admin</title>
+    <title>Support - Admin</title>
   </head>
   <body>
     <div class="home-page-add-items">
@@ -31,7 +31,7 @@
               <path d="M20 7v6"/>
               <path d="M23 10h-6"/>
             </svg>
-            Add book
+            Add Book
           </a>
           <a href="{{ url_for('booklog') }}" class="menu-item">
             <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -50,9 +50,9 @@
               <path d="M2 20v-1a4 4 0 0 1 4-4h2"/>
               <path d="M22 20v-1a4 4 0 0 0-4-4h-2"/>
             </svg>
-            Borrow Profiles
+            Borrower Profiles
           </a>
-          <a href="{{ url_for('support') }}" class="menu-item">
+          <a href="{{ url_for('support') }}" class="menu-item active">
             <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,33 +72,38 @@
       </div>
       <div class="main-content">
         <header class="header">
-          <h1 class="header-title">Book Catalog</h1>
-          <p class="subheading">Admin View</p>
+          <h1 class="header-title">How can we help you?</h1>
         </header>
-        <!-- Book catalog content goes here -->
-        <div class="library-grid">
-          {% for book in books %}
-          <div class="book-card" style="position: relative;">
-            <div class="book-image">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span style="position: absolute; top: 12px; right: 12px; background: #bdbdbd; color: #fff; border-radius: 8px; padding: 2px 16px; font-size: 16px; font-weight: 500;">{{ book.status|capitalize }}</span>
-            </div>
-            <div class="book-title" style="font-weight: bold; margin-top: 8px;">{{ book.title }}</div>
-            <div style="display: flex; gap: 12px; margin-top: 16px;">
-              <form method="GET" action="{{ url_for('edit_book', book_id=book.id) }}" style="display: inline;">
-                <button type="submit" style="background: #222; color: #fff; border: none; border-radius: 8px; padding: 6px 24px; font-size: 16px; font-weight: 500; cursor: pointer;">Edit</button>
-              </form>
-              <form method="POST" action="{{ url_for('delete_book', book_id=book.id) }}" style="display: inline;">
-                <button type="submit" style="background: #e53935; color: #fff; border: none; border-radius: 8px; padding: 6px 24px; font-size: 16px; font-weight: 500; cursor: pointer;">Delete</button>
-              </form>
-            </div>
-          </div>
-          {% endfor %}
+        <div class="support-section">
+          <h2 class="section-title">Account Management</h2>
+          <p class="section-description">Registration, login, password reset, profile updates.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Ebook Access</h2>
+          <p class="section-description">Downloading, reading, returning, renewals, holds.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Device Compatibility</h2>
+          <p class="section-description">Supported devices, syncing across devices.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Troubleshooting</h2>
+          <p class="section-description">Common errors, technical issues, reporting problems.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Collections</h2>
+          <p class="section-description">Creating, managing, sharing.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Library Navigation</h2>
+          <p class="section-description">Browsing, searching, filtering, sorting.</p>
+        </div>
+        <div class="support-section">
+          <h2 class="section-title">Contact Support</h2>
+          <p class="section-description">Email: support@shelfsync.com</p>
+          <p class="section-description">We aim to respond to all inquiries within 24-48 business hours.</p>
         </div>
       </div>
     </div>
   </body>
-</html>
+</html> 

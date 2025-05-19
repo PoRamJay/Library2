@@ -210,6 +210,9 @@
     border-radius: 8px;
     border: 1px solid;
     border-color: #dfdfdf;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   
   .borrower-profiles .img {
@@ -643,5 +646,10 @@
     .borrower-profiles .text-wrapper-11 {
       font-size: 14px;
     }
+  }
+  
+  .search-icon {
+    display: flex;
+    align-items: center;
   }
   

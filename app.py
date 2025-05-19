@@ -87,7 +87,7 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
                 session['user_type'] = 'admin'
-                return redirect(url_for('adminlibrary'))
+                return redirect(url_for('bookcatalog'))
             else:
                 flash('Invalid username or password!')
     return render_template('login.html')
@@ -523,6 +523,8 @@ def collection_view():
 def support():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    if session.get('user_type') == 'admin':
+        return render_template('support_admin.html')
     return render_template('support.html')
 
 @app.route('/logout')
@@ -536,7 +538,12 @@ def booklog():
         return redirect(url_for('login'))
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('SELECT * FROM book_log ORDER BY borrower_date DESC')
+    cursor.execute('''
+        SELECT b.title AS book_title, b.author AS book_author, l.borrower_name, l.borrower_date, l.returner_date, l.status, l.transaction_id
+        FROM booklog l
+        JOIN books b ON l.book_id = b.id
+        ORDER BY l.borrower_date DESC
+    ''')
     logs = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -552,7 +559,49 @@ def adminlibrary():
 def borrowerprofile():
     if not session.get('logged_in') or session.get('user_type') != 'admin':
         return redirect(url_for('login'))
-    return render_template('borrowerprofile.html')
+    search = request.args.get('search', '').strip()
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    if search:
+        cursor.execute('SELECT id, username FROM users WHERE LOWER(username) LIKE %s', (f"%{search.lower()}%",))
+    else:
+        cursor.execute('SELECT id, username FROM users')
+    users = cursor.fetchall()
+    conn.close()
+    return render_template('borrowerprofile.html', users=users, search=search)
+
+@app.route('/delete_user/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    if not session.get('logged_in') or session.get('user_type') != 'admin':
+        return redirect(url_for('login'))
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('SELECT username FROM users WHERE id = %s', (user_id,))
+    result = cursor.fetchone()
+    if result:
+        username = result['username']
+        # Find all books currently borrowed by this user
+        cursor.execute('''
+            SELECT b.id FROM books b
+            JOIN (
+                SELECT book_id, MAX(borrower_date) as max_date
+                FROM booklog
+                GROUP BY book_id
+            ) bl ON b.id = bl.book_id
+            JOIN booklog l ON l.book_id = bl.book_id AND l.borrower_date = bl.max_date
+            WHERE l.borrower_name = %s AND l.status != 'Returned'
+        ''', (username,))
+        book_ids = [row['id'] for row in cursor.fetchall()]
+        # Set those books to available
+        for book_id in book_ids:
+            cursor.execute('UPDATE books SET status = \"Available\" WHERE id = %s', (book_id,))
+    # Remove collections made by this user (if you have a collections table with user_id)
+    cursor.execute('DELETE FROM collections WHERE user_id = %s', (user_id,))
+    # Delete the user
+    cursor.execute('DELETE FROM users WHERE id = %s', (user_id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('borrowerprofile'))
 
 @app.route('/bookcatalog')
 def bookcatalog():
@@ -606,6 +655,30 @@ def delete_book(book_id):
     cursor.close()
     conn.close()
     return redirect(url_for('bookcatalog'))
+
+@app.route('/add_book', methods=['GET', 'POST'])
+def add_book():
+    if not session.get('logged_in') or session.get('user_type') != 'admin':
+        return redirect(url_for('login'))
+    message = None
+    if request.method == 'POST':
+        title = request.form['title']
+        author = request.form['author']
+        isbn = request.form['isbn']
+        year_published = request.form.get('year_published')
+        genre = request.form.get('genre')
+        status = request.form.get('status', 'available')
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO books (title, author, isbn, year_published, genre, status)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        ''', (title, author, isbn, year_published, genre, status))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        message = 'Book added successfully!'
+    return render_template('add_book.html', message=message)
 
 if __name__ == '__main__':
     app.run(debug=True)
