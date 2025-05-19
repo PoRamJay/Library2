@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_globals.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_styleguide.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='items_style.css') }}" />
+  </head>
+  <body>
+    <div class="home-page-add-items">
+      <div class="sidebar">
+        <nav class="list">
+          <a href="/library" class="library">
+            <div class="logo-placeholder"></div>
+            <span class="text-wrapper">Library</span>
+          </a>
+          <a href="/add_items" class="add-items">
+            <div class="logo-placeholder"></div>
+            <span class="text-wrapper">Add Items</span>
+          </a>
+          <a href="/add_collection" class="add-collection">
+            <div class="logo-placeholder"></div>
+            <span class="text-wrapper">Add Collection</span>
+          </a>
+        </nav>
+        <div class="logo-placeholder-2"></div>
+        <div class="title">Shelf Sync</div>
+        <div class="support">
+          <div class="logo-placeholder"></div>
+          <div class="text-wrapper">Support</div>
+        </div>
+        <div class="support-2">
+          <div class="logo-placeholder"></div>
+          <div class="text-wrapper">Logout</div>
+        </div>
+      </div>
+      <header class="header">
+        <div class="filter">
+          <img class="img" src="{{ url_for('static', filename='img/filter.svg') }}" />
+          <div class="label">Filter</div>
+        </div>
+        <div class="search">
+          <img class="img" src="{{ url_for('static', filename='img/search.svg') }}" /> <input class="input" placeholder="Start Searching..." type="text" />
+        </div>
+        <div class="text-wrapper-2">Add Item</div>
+        <img class="line" src="{{ url_for('static', filename='img/line-1.svg') }}" />
+      </header>
+      <p class="p">You must create a collection before you can add an item.</p>
+      <img class="chevron-down" src="{{ url_for('static', filename='img/chevron-down.svg') }}" />
+    </div>
+  </body>
+</html>
